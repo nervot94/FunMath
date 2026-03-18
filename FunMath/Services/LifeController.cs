@@ -7,22 +7,16 @@ namespace FunMath.Services;
 /// </summary>
 public class LifeController(GameState gameState)
 {
-    public int GetRemainingLives() => gameState.Lives;
-
     public void LoseLife()
     {
-        if (gameState.IsGameOver || gameState.Lives <= 0)
-        {
-            return;
-        }
+        if (gameState.IsGameOver || gameState.Lives <= 0) return;
 
         gameState.Lives--;
 
-        if (gameState.Lives <= 0)
-        {
-            gameState.Lives = 0;
-            gameState.IsGameOver = true;
-        }
+        if (gameState.Lives > 0) return;
+
+        gameState.Lives = 0;
+        gameState.IsGameOver = true;
     }
 
     public string GetLivesDisplayText() => $"Lives: {gameState.Lives}/{GameState.StartingLives}";
