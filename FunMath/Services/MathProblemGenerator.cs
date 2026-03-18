@@ -42,8 +42,8 @@ public class MathProblemGenerator(GameState gameState)
         {
             MathOperation.Addition => $"{number1} + {number2} = ?", 
             MathOperation.Substraction => $"{number1} - {number2} = ?",
-            MathOperation.Multiplication => $"{number1} * {number2} = ?",
-            MathOperation.Division => $"{number1} / {number2} = ?",
+            MathOperation.Multiplication => $"{number1} x {number2} = ?",
+            MathOperation.Division => $"{number1} : {number2} = ?",
 
             // C# SHUTUP
             _ => throw new UnreachableException("This should not be reachable")
