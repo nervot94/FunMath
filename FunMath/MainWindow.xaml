@@ -10,7 +10,8 @@
 
     <Grid Background="#dce0e8">
         <!-- Centered Card -->
-        <Border Width="382" 
+        <Border x:Name="CardBorder"
+                Width="382" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center"
                 Background="#eff1f5" 

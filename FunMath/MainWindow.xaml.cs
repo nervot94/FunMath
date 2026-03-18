@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using FunMath.Models;
 using FunMath.Services;
 
@@ -50,14 +52,12 @@ public partial class MainWindow : Window
     {
         if (string.IsNullOrWhiteSpace(AnswerTextBox.Text))
         {
-            MessageBox.Show("Voer een antwoord in!", "Geen antwoord", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
         // We do not want to have invalid answers crash the entire game.
         if (!int.TryParse(AnswerTextBox.Text, out var userAnswer))
         {
-            MessageBox.Show("Voer een geldig getal in!", "Ongeldige invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
@@ -65,56 +65,67 @@ public partial class MainWindow : Window
         if (userAnswer == _gameState.CorrectAnswer)
         {
             _scoreController.IncrementScore();
-            MessageBox.Show("Correct! Goed gedaan!", "Juist", MessageBoxButton.OK, MessageBoxImage.Information);
+            FlashBackground("#40a02b"); // Green for correct
             GenerateNewProblem();
             UpdateUi();
         }
         else
         {
             _lifeController.LoseLife();
+            FlashBackground("#d20f39"); // Red for incorrect
             UpdateUi();
 
             if (_gameState.IsGameOver)
             {
-                MessageBox.Show(
-                    $"Fout! Het juiste antwoord was {_gameState.CorrectAnswer}.\nJe levens zijn op, het spel wordt opnieuw gestart.",
-                    "Game Over",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-
+                MessageBox.Show("Game over! :(", "Game Over", MessageBoxButton.OK, MessageBoxImage.Information);
                 ResetGame();
                 return;
             }
-
-            MessageBox.Show(
-                $"Fout! Het juiste antwoord was {_gameState.CorrectAnswer}.\nJe verliest 1 leven.",
-                "Fout",
-                MessageBoxButton.OK,
-                MessageBoxImage.Error);
 
             GenerateNewProblem();
         }
     }
     
+    /// <summary>
+    /// Flashes the card background with the specified color.
+    /// </summary>
+    /// <param name="flashColor">The color to flash (e.g., green for correct, red for incorrect).</param>
+    private void FlashBackground(string flashColor)
+    {
+        var originalColor = (Color)ColorConverter.ConvertFromString("#eff1f5");
+        var targetColor = (Color)ColorConverter.ConvertFromString(flashColor);
+        
+        var colorAnimation = new ColorAnimation
+        {
+            From = targetColor,
+            To = originalColor,
+            Duration = TimeSpan.FromSeconds(1),
+            AutoReverse = false
+        };
+        
+        var brush = new SolidColorBrush(originalColor);
+        CardBorder.Background = brush;
+        brush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+    }
+    
     private void ResetGame()
     {
         _gameState.Reset();
-        
-        AnswerTextBox.IsEnabled = true;
-        CheckButton.IsEnabled = true;
-        NewProblemButton.IsEnabled = true;
+
         GenerateNewProblem();
         UpdateUi();
     }
+
+    private void CheckButton_Click(object sender, RoutedEventArgs e) => CheckAnswer();
     
-    private void CheckButton_Click(object sender, RoutedEventArgs e)
-    {
-        CheckAnswer();
-    }
+    private void NewProblemButton_Click(object sender, RoutedEventArgs e) => GenerateNewProblem();
     
-    private void NewProblemButton_Click(object sender, RoutedEventArgs e)
+    private void NewGameButton_Click(object sender, RoutedEventArgs e) => ResetGame();
+
+    private void RestartButton_Click(object sender, RoutedEventArgs e)
     {
         GenerateNewProblem();
+        UpdateUi();
     }
     
     private void AnswerTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -123,15 +134,5 @@ public partial class MainWindow : Window
         {
             CheckAnswer();
         }
-    }
-    
-    private void RestartButton_Click(object sender, RoutedEventArgs e)
-    {
-        ResetGame();
-    }
-    
-    private void NewGameButton_Click(object sender, RoutedEventArgs e)
-    {
-        ResetGame();
     }
 }
