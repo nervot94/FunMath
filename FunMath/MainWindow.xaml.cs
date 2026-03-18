@@ -12,6 +12,7 @@ public partial class MainWindow : Window
 {
     private readonly GameState _gameState = new();
     private readonly ScoreController _scoreController;
+    private readonly LifeController _lifeController;
     private readonly MathProblemGenerator _problemGenerator;
     
     public MainWindow()
@@ -19,6 +20,7 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         _scoreController = new ScoreController(_gameState);
+        _lifeController = new LifeController(_gameState);
         _problemGenerator = new MathProblemGenerator(_gameState);
 
         GenerateNewProblem();
@@ -38,9 +40,7 @@ public partial class MainWindow : Window
     private void UpdateUi()
     {
         ScoreTextBlock.Text = _scoreController.GetScoreDisplayText();
-
-        // TODO: Check if we have a game over state.
-        //       If so, reset game
+        LiveTextBlock.Text = $"Levens: {_lifeController.GetRemainingLives()}/{GameState.StartingLives}";
     }
 
     /// <summary>
@@ -71,12 +71,27 @@ public partial class MainWindow : Window
         }
         else
         {
-            // TODO: Decrement lives by 1
-            
-            MessageBox.Show($"Fout! Het juiste antwoord was {_gameState.CorrectAnswer}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+            _lifeController.LoseLife();
             UpdateUi();
 
-            // TODO: Only generate a new problem if we are in a game over state
+            if (_gameState.IsGameOver)
+            {
+                MessageBox.Show(
+                    $"Fout! Het juiste antwoord was {_gameState.CorrectAnswer}.\nJe levens zijn op, het spel wordt opnieuw gestart.",
+                    "Game Over",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+
+                ResetGame();
+                return;
+            }
+
+            MessageBox.Show(
+                $"Fout! Het juiste antwoord was {_gameState.CorrectAnswer}.\nJe verliest 1 leven.",
+                "Fout",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+
             GenerateNewProblem();
         }
     }
@@ -104,7 +119,6 @@ public partial class MainWindow : Window
     
     private void AnswerTextBox_KeyDown(object sender, KeyEventArgs e)
     {
-        // TODO: Check game over state
         if (e.Key == Key.Enter)
         {
             CheckAnswer();

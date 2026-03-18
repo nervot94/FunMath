@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="Rekenspel" Height="700" Width="600"
         WindowStartupLocation="CenterScreen">
-    
+
     <Grid Background="#dce0e8">
         <!-- Centered Card -->
-        <Border Width="400" 
+        <Border Width="382" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center"
                 Background="#eff1f5" 
                 CornerRadius="20" 
-                Padding="30">
-            
+                Padding="30" Height="568">
+
             <StackPanel>
                 <!-- Title -->
                 <TextBlock x:Name="TitleTextBlock"
@@ -26,7 +26,7 @@
                            HorizontalAlignment="Center"
                            Foreground="Black"
                            Margin="0,0,0,20"/>
-                
+
                 <!-- Math Problem Display -->
                 <TextBlock x:Name="MathProblemTextBlock"
                            Text="5 + 3 = ?"
@@ -36,7 +36,7 @@
                            TextAlignment="Center"
                            Foreground="#4c4f69"
                            Margin="0,0,0,15"/>
-                
+
                 <!-- Answer Input -->
                 <TextBox x:Name="AnswerTextBox"
                          Height="40"
@@ -46,20 +46,20 @@
                          Margin="0,0,0,20"
                          Padding="5"
                          KeyDown="AnswerTextBox_KeyDown"/>
-                
+
                 <!-- Action Buttons -->
                 <Grid Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Button x:Name="CheckButton"
                             Content="Check Antwoord"
                             Grid.Column="0"
                             Margin="0,0,5,0"
                             Height="40"
-                            Background="Black"
+                            Background="#40a02b"
                             Foreground="White"
                             FontSize="14"
                             FontWeight="SemiBold"
@@ -83,13 +83,13 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    
+
                     <Button x:Name="NewProblemButton"
                             Content="Nieuwe Som"
                             Grid.Column="1"
                             Margin="5,0,0,0"
                             Height="40"
-                            Background="Black"
+                            Background="#209fb5"
                             Foreground="White"
                             FontSize="14"
                             FontWeight="SemiBold"
@@ -114,14 +114,14 @@
                         </Button.Style>
                     </Button>
                 </Grid>
-                
+
                 <!-- Score and Lives Display -->
                 <Grid Margin="0,0,0,20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock x:Name="ScoreTextBlock"
                                Text="Score: 0"
                                Grid.Column="0"
@@ -129,16 +129,22 @@
                                FontSize="16"
                                FontWeight="Bold"
                                Foreground="Black"/>
-                    
+
                     <!-- TODO: Add lives display -->
+                    <TextBlock x:Name="LiveTextBlock"
+                              Text="Levens: 0"
+                              Grid.Column="1"
+                              FontSize="16"
+                              FontWeight="Bold"
+                              Foreground="Black" HorizontalAlignment="Right"/>
                 </Grid>
-                
+
                 <!-- Restart Button -->
                 <Button x:Name="RestartButton"
                         Content="Restart"
                         Height="35"
                         Margin="0,0,0,10"
-                        Background="Black"
+                        Background="#d20f39"
                         Foreground="White"
                         FontSize="14"
                         Cursor="Hand"
@@ -161,12 +167,12 @@
                         </Style>
                     </Button.Style>
                 </Button>
-                
+
                 <!-- New Game Button -->
                 <Button x:Name="NewGameButton"
                         Content="New Game"
                         Height="35"
-                        Background="Black"
+                        Background="#dd7878"
                         Foreground="White"
                         FontSize="14"
                         Cursor="Hand"

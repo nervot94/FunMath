@@ -9,8 +9,8 @@ public class MathProblemGenerator(GameState gameState)
     
     public string GenerateNewProblem()
     {
-        var number1 = _random.Next(1, 11);
-        var number2 = _random.Next(1, 11);
+        var number1 = _random.Next(1, 21);
+        var number2 = _random.Next(1, 21);
 
         var mathOperation = GetRandomMathOperation();
         var correctAnswer = mathOperation switch
