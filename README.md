@@ -32,3 +32,6 @@ Dit project is ontwikkeld voor **Basisschool de Regenboog** als onderdeel van ee
 ## Documentatie
 - **User Stories**: Zie [docs/user-stories.md](./docs/user-stories.md) voor gedetailleerde informatie over de geïmplementeerde functionaliteiten
 - **Wireframe**: Het ontwerp van de applicatie is gedocumenteerd in [docs/wireframe.png](./docs/wireframe.png)
+
+## Note
+Dit project was gemaakt voor de NATIVE eindopdracht van Blok B bij de Software Developer opleiding van Curio.
