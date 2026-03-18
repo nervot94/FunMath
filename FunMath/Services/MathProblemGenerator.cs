@@ -9,24 +9,33 @@ public class MathProblemGenerator(GameState gameState)
     
     public string GenerateNewProblem()
     {
-        var number1 = _random.Next(1, 21);
-        var number2 = _random.Next(1, 21);
+        int number1;
+        int number2;
+        int correctAnswer;
+        MathOperation mathOperation;
 
-        var mathOperation = GetRandomMathOperation();
-        var correctAnswer = mathOperation switch
+        // I hate this code.
+        do
         {
-            MathOperation.Addition => number1 + number2,
-            MathOperation.Substraction => number1 - number2,
-            MathOperation.Multiplication => number1 * number2,
-            MathOperation.Division => number1 / number2,
-            _ => throw new UnreachableException("This should not be reachable"),
-        };
+            number1 = _random.Next(1, 11);
+            number2 = _random.Next(1, 11);
+            mathOperation = GetRandomMathOperation();
+
+            correctAnswer = mathOperation switch
+            {
+                MathOperation.Addition => number1 + number2,
+                MathOperation.Substraction => number1 - number2,
+                MathOperation.Multiplication => number1 * number2,
+                MathOperation.Division => number1 / number2,
+                _ => throw new UnreachableException("This should not be reachable"),
+            };
+        } while (correctAnswer % 2 != 0 || (mathOperation == MathOperation.Division && number1 % number2 != 0));
         
         gameState.CorrectAnswer = correctAnswer;
 
         return GetFormatString(mathOperation, number1, number2);
     }
-    
+
     private static string GetFormatString(MathOperation operation, int number1, int number2)
     {
         return operation switch
@@ -35,7 +44,6 @@ public class MathProblemGenerator(GameState gameState)
             MathOperation.Substraction => $"{number1} - {number2} = ?",
             MathOperation.Multiplication => $"{number1} * {number2} = ?",
             MathOperation.Division => $"{number1} / {number2} = ?",
-
 
             // C# SHUTUP
             _ => throw new UnreachableException("This should not be reachable")
