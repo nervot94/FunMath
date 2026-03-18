@@ -20,7 +20,7 @@
             <StackPanel>
                 <!-- Title -->
                 <TextBlock x:Name="TitleTextBlock"
-                           Text="Rekenspel"
+                           Text="🌈 Rekenspel 🎉"
                            FontSize="32"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"
@@ -172,7 +172,7 @@
                 <Button x:Name="NewGameButton"
                         Content="New Game"
                         Height="35"
-                        Background="#dd7878"
+                        Background="#209fb5"
                         Foreground="White"
                         FontSize="14"
                         Cursor="Hand"
