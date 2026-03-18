@@ -12,11 +12,13 @@ public partial class MainWindow : Window
 {
     private readonly GameState _gameState = new();
     private readonly ScoreController _scoreController;
+    private readonly MathProblemGenerator _problemGenerator;
     
     public MainWindow()
     {
         InitializeComponent();
 
+        _scoreController = new ScoreController(_gameState);
         _problemGenerator = new MathProblemGenerator(_gameState);
 
         GenerateNewProblem();
@@ -35,6 +37,7 @@ public partial class MainWindow : Window
     
     private void UpdateUi()
     {
+        ScoreTextBlock.Text = _scoreController.GetScoreDisplayText();
 
         // TODO: Check if we have a game over state.
         //       If so, reset game
@@ -61,6 +64,7 @@ public partial class MainWindow : Window
         // Check if the answer is correct
         if (userAnswer == _gameState.CorrectAnswer)
         {
+            _scoreController.IncrementScore();
             MessageBox.Show("Correct! Goed gedaan!", "Juist", MessageBoxButton.OK, MessageBoxImage.Information);
             GenerateNewProblem();
             UpdateUi();
