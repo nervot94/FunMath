@@ -171,7 +171,7 @@
 
                 <!-- New Game Button -->
                 <Button x:Name="NewGameButton"
-                        Content="New Game"
+                        Content="Nieuw spel"
                         Height="35"
                         Background="#209fb5"
                         Foreground="White"
