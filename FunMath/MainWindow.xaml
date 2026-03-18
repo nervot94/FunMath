@@ -15,7 +15,7 @@
                 VerticalAlignment="Center"
                 Background="#eff1f5" 
                 CornerRadius="20" 
-                Padding="30" Height="568">
+                Padding="30" Height="460">
 
             <StackPanel>
                 <!-- Title -->
