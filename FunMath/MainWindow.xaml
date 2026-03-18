@@ -132,7 +132,7 @@
 
                     <!-- TODO: Add lives display -->
                     <TextBlock x:Name="LiveTextBlock"
-                              Text="Levens: 0"
+                              Text="Levens: 0/3"
                               Grid.Column="1"
                               FontSize="16"
                               FontWeight="Bold"

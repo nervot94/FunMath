@@ -40,7 +40,7 @@ public partial class MainWindow : Window
     private void UpdateUi()
     {
         ScoreTextBlock.Text = _scoreController.GetScoreDisplayText();
-        LiveTextBlock.Text = $"Levens: {_lifeController.GetRemainingLives()}/{GameState.StartingLives}";
+        LiveTextBlock.Text = _lifeController.GetLivesDisplayText();
     }
 
     /// <summary>
