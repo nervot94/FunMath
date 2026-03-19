@@ -13,7 +13,8 @@ public class MathProblemGenerator(GameState gameState)
         int number2;
         int correctAnswer;
         MathOperation mathOperation;
-
+        
+        // Generate a problem until we have a valid problem.
         // I hate this code.
         do
         {
@@ -29,7 +30,9 @@ public class MathProblemGenerator(GameState gameState)
                 MathOperation.Division => number1 / number2,
                 _ => throw new UnreachableException("This should not be reachable"),
             };
-        } while (correctAnswer % 2 != 0 || (mathOperation == MathOperation.Division && number1 % number2 != 0));
+        } while (correctAnswer % 2 != 0 || // Answer must be even
+                 correctAnswer < 0 || // No negative answers
+                 (mathOperation == MathOperation.Division && number1 % number2 != 0)); // Division must be exact
         
         gameState.CorrectAnswer = correctAnswer;
 
