@@ -8,7 +8,7 @@
         Title="Rekenspel" Height="700" Width="600"
         WindowStartupLocation="CenterScreen">
 
-    <Grid Background="#dce0e8">
+    <Grid x:Name="MainGrid" Background="#dce0e8">
         <!-- Centered Card -->
         <Border x:Name="CardBorder"
                 Width="382" 

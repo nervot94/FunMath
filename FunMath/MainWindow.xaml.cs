@@ -92,7 +92,7 @@ public partial class MainWindow : Window
     /// <param name="flashColor">The color to flash (e.g., green for correct, red for incorrect).</param>
     private void FlashBackground(string flashColor)
     {
-        var originalColor = (Color)ColorConverter.ConvertFromString("#eff1f5");
+        var originalColor = (Color)ColorConverter.ConvertFromString("#dce0e8");
         var targetColor = (Color)ColorConverter.ConvertFromString(flashColor);
         
         var colorAnimation = new ColorAnimation
@@ -104,7 +104,7 @@ public partial class MainWindow : Window
         };
         
         var brush = new SolidColorBrush(originalColor);
-        CardBorder.Background = brush;
+        MainGrid.Background = brush;
         brush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
     }
     
