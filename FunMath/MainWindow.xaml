@@ -9,165 +9,177 @@
         WindowStartupLocation="CenterScreen">
 
     <Grid x:Name="MainGrid" Background="#dce0e8">
-        <!-- Centered Card -->
-        <Border x:Name="CardBorder"
-                Width="382" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center"
-                Background="#eff1f5" 
-                CornerRadius="20" 
-                Padding="30" Height="460">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Margin="24">
+            <Viewbox Stretch="Uniform"
+                     StretchDirection="Both">
+                <Grid Width="442"
+                      Height="520">
+                    <!-- Centered Card -->
+                    <Border x:Name="CardBorder"
+                            Width="382"
+                            Height="460"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="#eff1f5"
+                            CornerRadius="20"
+                            Padding="30">
 
-            <StackPanel>
-                <!-- Title -->
-                <TextBlock x:Name="TitleTextBlock"
-                           Text="🌈 Rekenspel 🎉"
-                           FontSize="32"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Center"
-                           Foreground="#8839EF"
-                           Margin="0,0,0,20"/>
+                        <StackPanel>
+                            <!-- Title -->
+                            <TextBlock x:Name="TitleTextBlock"
+                                       Text="🌈 Rekenspel 🎉"
+                                       FontSize="32"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       Foreground="#8839EF"
+                                       Margin="0,0,0,20"/>
 
-                <!-- Math Problem Display -->
-                <TextBlock x:Name="MathProblemTextBlock"
-                           Text="5 + 3 = ?"
-                           FontSize="24"
-                           FontWeight="SemiBold"
-                           HorizontalAlignment="Center"
-                           TextAlignment="Center"
-                           Foreground="#4c4f69"
-                           Margin="0,0,0,15"/>
+                            <!-- Math Problem Display -->
+                            <TextBlock x:Name="MathProblemTextBlock"
+                                       Text="5 + 3 = ?"
+                                       FontSize="24"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center"
+                                       Foreground="#4c4f69"
+                                       Margin="0,0,0,15"/>
 
-                <!-- Answer Input -->
-                <TextBox x:Name="AnswerTextBox"
-                         Height="40"
-                         FontSize="18"
-                         HorizontalContentAlignment="Center"
-                         VerticalContentAlignment="Center"
-                         Margin="0,0,0,20"
-                         Padding="5"
-                         KeyDown="AnswerTextBox_KeyDown"/>
+                            <!-- Answer Input -->
+                            <TextBox x:Name="AnswerTextBox"
+                                     Height="40"
+                                     FontSize="18"
+                                     HorizontalContentAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     Margin="0,0,0,20"
+                                     Padding="5"
+                                     KeyDown="AnswerTextBox_KeyDown"/>
 
-                <!-- Action Buttons -->
-                <Grid Margin="0,0,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                            <!-- Action Buttons -->
+                            <Grid Margin="0,0,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                    <Button x:Name="CheckButton"
-                            Content="Check Antwoord"
-                            Grid.Column="0"
-                            Margin="0,0,5,0"
-                            Height="40"
-                            Background="#40a02b"
-                            Foreground="White"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Click="CheckButton_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="8"
-                                                    BorderThickness="0">
-                                                <ContentPresenter HorizontalAlignment="Center" 
-                                                                  VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                                <Button x:Name="CheckButton"
+                                        Content="Check Antwoord"
+                                        Grid.Column="0"
+                                        Margin="0,0,5,0"
+                                        Height="40"
+                                        Background="#40a02b"
+                                        Foreground="White"
+                                        FontSize="14"
+                                        FontWeight="SemiBold"
+                                        Cursor="Hand"
+                                        BorderThickness="0"
+                                        Click="CheckButton_Click">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="8"
+                                                                BorderThickness="0">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                              VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
 
-                    <Button x:Name="NewProblemButton"
-                            Content="Nieuwe Som"
-                            Grid.Column="1"
-                            Margin="5,0,0,0"
-                            Height="40"
-                            Background="#209fb5"
-                            Foreground="White"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Cursor="Hand"
-                            BorderThickness="0"
-                            Click="NewProblemButton_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="Button">
-                                            <Border Background="{TemplateBinding Background}"
-                                                    CornerRadius="8"
-                                                    BorderThickness="0">
-                                                <ContentPresenter HorizontalAlignment="Center" 
-                                                                  VerticalAlignment="Center"/>
-                                            </Border>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                                <Button x:Name="NewProblemButton"
+                                        Content="Nieuwe Som"
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        Height="40"
+                                        Background="#209fb5"
+                                        Foreground="White"
+                                        FontSize="14"
+                                        FontWeight="SemiBold"
+                                        Cursor="Hand"
+                                        BorderThickness="0"
+                                        Click="NewProblemButton_Click">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                CornerRadius="8"
+                                                                BorderThickness="0">
+                                                            <ContentPresenter HorizontalAlignment="Center"
+                                                                              VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
+
+                            <!-- Score and Lives Display -->
+                            <Grid Margin="0,0,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock x:Name="ScoreTextBlock"
+                                           Text="Score: 0"
+                                           Grid.Column="0"
+                                           HorizontalAlignment="Left"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           Foreground="Black"/>
+
+                                <!-- TODO: Add lives display -->
+                                <TextBlock x:Name="LiveTextBlock"
+                                          Text="Levens: 0/3"
+                                          Grid.Column="1"
+                                          FontSize="16"
+                                          FontWeight="Bold"
+                                          Foreground="Black"
+                                          HorizontalAlignment="Right"/>
+                            </Grid>
+
+                            <!-- New Game Button -->
+                            <Button x:Name="NewGameButton"
+                                    Content="Nieuw spel"
+                                    Height="35"
+                                    Background="#209fb5"
+                                    Foreground="White"
+                                    FontSize="14"
+                                    Cursor="Hand"
+                                    BorderThickness="0"
+                                    Click="NewGameButton_Click">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}"
+                                                            CornerRadius="6"
+                                                            BorderThickness="0">
+                                                        <ContentPresenter HorizontalAlignment="Center"
+                                                                          VerticalAlignment="Center"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </Border>
                 </Grid>
-
-                <!-- Score and Lives Display -->
-                <Grid Margin="0,0,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock x:Name="ScoreTextBlock"
-                               Text="Score: 0"
-                               Grid.Column="0"
-                               HorizontalAlignment="Left"
-                               FontSize="16"
-                               FontWeight="Bold"
-                               Foreground="Black"/>
-
-                    <!-- TODO: Add lives display -->
-                    <TextBlock x:Name="LiveTextBlock"
-                              Text="Levens: 0/3"
-                              Grid.Column="1"
-                              FontSize="16"
-                              FontWeight="Bold"
-                              Foreground="Black" HorizontalAlignment="Right"/>
-                </Grid>
-
-                <!-- New Game Button -->
-                <Button x:Name="NewGameButton"
-                        Content="Nieuw spel"
-                        Height="35"
-                        Background="#209fb5"
-                        Foreground="White"
-                        FontSize="14"
-                        Cursor="Hand"
-                        BorderThickness="0"
-                        Click="NewGameButton_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}"
-                                                CornerRadius="6"
-                                                BorderThickness="0">
-                                            <ContentPresenter HorizontalAlignment="Center" 
-                                                              VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
-            </StackPanel>
-        </Border>
+            </Viewbox>
+        </Grid>
     </Grid>
 </Window>
