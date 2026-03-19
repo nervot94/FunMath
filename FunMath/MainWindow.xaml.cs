@@ -77,7 +77,12 @@ public partial class MainWindow : Window
 
             if (_gameState.IsGameOver)
             {
-                MessageBox.Show("Game over! :(", "Game Over", MessageBoxButton.OK, MessageBoxImage.Information);
+                var notificationWindow = new NotificationWindow("Game over! :(")
+                {
+                    Owner = this
+                };
+
+                notificationWindow.ShowDialog();
                 ResetGame();
                 return;
             }
