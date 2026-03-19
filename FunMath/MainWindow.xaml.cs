@@ -121,12 +121,6 @@ public partial class MainWindow : Window
     private void NewProblemButton_Click(object sender, RoutedEventArgs e) => GenerateNewProblem();
     
     private void NewGameButton_Click(object sender, RoutedEventArgs e) => ResetGame();
-
-    private void RestartButton_Click(object sender, RoutedEventArgs e)
-    {
-        GenerateNewProblem();
-        UpdateUi();
-    }
     
     private void AnswerTextBox_KeyDown(object sender, KeyEventArgs e)
     {

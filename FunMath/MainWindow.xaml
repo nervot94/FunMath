@@ -140,35 +140,6 @@
                               Foreground="Black" HorizontalAlignment="Right"/>
                 </Grid>
 
-                <!-- Restart Button -->
-                <Button x:Name="RestartButton"
-                        Content="Restart"
-                        Height="35"
-                        Margin="0,0,0,10"
-                        Background="#d20f39"
-                        Foreground="White"
-                        FontSize="14"
-                        Cursor="Hand"
-                        BorderThickness="0"
-                        Click="RestartButton_Click">
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}"
-                                                CornerRadius="6"
-                                                BorderThickness="0">
-                                            <ContentPresenter HorizontalAlignment="Center" 
-                                                              VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
                 <!-- New Game Button -->
                 <Button x:Name="NewGameButton"
                         Content="Nieuw spel"
