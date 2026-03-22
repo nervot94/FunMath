@@ -3,7 +3,7 @@ using FunMath.Models;
 namespace FunMath.Services;
 
 /// <summary>
-/// Manages the remaining lives for the current game.
+/// Manages the remaining lives for the current tomato game.
 /// </summary>
 public class LifeController(GameState gameState)
 {
