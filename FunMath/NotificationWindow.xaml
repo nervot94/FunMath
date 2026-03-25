@@ -29,7 +29,7 @@
                                Foreground="#8839EF"/>
 
                     <TextBlock x:Name="MessageTextBlock"
-                               Margin="0,18,0,0"
+                               Margin="0,5,0,0"
                                FontSize="18"
                                TextAlignment="Center"
                                TextWrapping="Wrap"
